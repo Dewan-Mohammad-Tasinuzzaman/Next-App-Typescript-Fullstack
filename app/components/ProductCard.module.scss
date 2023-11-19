@@ -1,0 +1,6 @@
+/* This file's classes will be scoped to our ProductCard component (no clashing with other classes of same name) */
+/* IN CSS MODULES WE CANNOT USE hyphens etc. (bec they're nota valid js property). You must camel-case name your classes here. */
+.card {
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
