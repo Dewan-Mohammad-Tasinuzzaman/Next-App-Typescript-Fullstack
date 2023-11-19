@@ -24,7 +24,12 @@ const NavBar = () => {
                 // The key needs to be a unique value and the link.href here DOES Uniquely identify each link (bec they all are supposed to have different paths/href)
                 <Link 
                     key={link.href} 
-                    className={`${link.href === currentPath ? 'text-zinc-900' : 'text-zinc-500'} hover:text-zinc-800 transition-colors`} href={link.href}>{link.label}
+                    className={classNames({
+                        'text-zinc-900': link.href === currentPath, // Conditionally rendering class based on path
+                        'text-zinc-500': link.href !== currentPath,
+                        'hover:text-zinc-800 transition-colors': true // True means this class/classes are always rendered.
+                    })} 
+                    href={link.href}>{link.label}
                 </Link>
             )}
         </ul>
