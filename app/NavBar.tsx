@@ -1,8 +1,15 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 import { AiFillBug } from 'react-icons/ai';
+import classNames from 'classnames';
 
 const NavBar = () => {
+
+    // This is used to highligh the Active Page on the NavBar!
+    const currentPath = usePathname();
 
     const links = [
         { label: 'Dashboard', href: '/' },
@@ -15,8 +22,10 @@ const NavBar = () => {
         <ul className='flex space-x-6'>
             {links.map(link => 
                 // The key needs to be a unique value and the link.href here DOES Uniquely identify each link (bec they all are supposed to have different paths/href)
-                <Link key={link.href} 
-                className='text-zinc-500 hover:text-zinc-800 transition-colors' href={link.href}>{link.label}</Link>
+                <Link 
+                    key={link.href} 
+                    className={`${link.href === currentPath ? 'text-zinc-900' : 'text-zinc-500'} hover:text-zinc-800 transition-colors`} href={link.href}>{link.label}
+                </Link>
             )}
         </ul>
     </nav>
