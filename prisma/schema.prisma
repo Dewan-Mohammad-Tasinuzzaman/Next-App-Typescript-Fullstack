@@ -9,3 +9,20 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+// Issue Model
+model Issue {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255) // varchar(191) We can store string values of up to 191 characters
+  description String   @db.Text // because we want long descriptions
+  status      Status   @default(OPEN)
+  createdAt   DateTime @default(now()) // so that every time an issue is created/inserted, the current value of time is inserted into the column
+  updatedAt   DateTime @updatedAt // with this, every time an issue record is updated, the database engine automatically updates the value of this column
+}
+
+// An enum is a set of constant values
+enum Status {
+  OPEN
+  IN_PROGRESS
+  CLOSED
+}
